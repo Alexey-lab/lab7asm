@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+
+int calc(int a, int b, int c, int d, int e) {
+	return a - b + c / d * e;
+}
+
+
+void main()
+{
+	int a, b, c, d, e, y;
+
+	printf("Calculation Section. a * b + c - d / e \n");
+	printf("Enter variable a value: ");
+	scanf_s("%d", &a);
+	printf("Enter variable b value: ");
+	scanf_s("%d", &b);
+	printf("Enter variable c value: ");
+	scanf_s("%d", &c);
+	printf("Enter variable d value: ");
+	scanf_s("%d", &d);
+	printf("Enter variable e value: ");
+	scanf_s("%d", &e);
+
+	__asm {
+		push a
+		push b
+		push c
+		push d
+		push e
+		call calc
+		add esp, 20
+		mov y, eax
+	}
+
+	printf("Calculation Result = %d\n", y);
+}
